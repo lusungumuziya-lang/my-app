@@ -1,1 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Muundo2U — v1.0.2 | Lusungu Muziya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   MUUNDO2U — ZAMBIA'S SOVEREIGN CREATIVE INFRASTRUCTURE
+   CEO & Founder: Lusungu Muziya | Est. 2026 | v1.0.2
+═══════════════════════════════════════════════════ */
+:root {
+  --copper:#C8511A; --copper-l:#E8793A; --copper-d:#8C3410; --copper-bg:#FEF0E6;
+  --gold:#D4970A; --gold-l:#F0B429; --gold-bg:#FFF3DC;
+  --night:#160800; --night2:#211005; --night3:#2E1A09; --night4:#3A2210;
+  --cream:#F5EDD8; --cream2:#EDE0C4; --cw:#FFF8EE;
+  --green:#0F7A56; --green-l:#1DAF7A; --green-d:#085238; --green-bg:#E8F5EE;
+  --purple:#5B4AE8; --purple-bg:#EEEDFE;
+  --red:#DC3545; --red-bg:#FDECEA;
+  --border:#D4BFA0; --border-l:#EDE0C4;
+  --text:#2A1200; --text-s:#5A3A1A; --text-m:#9A7A60; --text-d:#C8B89A;
+  --r:12px; --r-lg:20px; --r-xl:28px;
+  --serif:'Playfair Display',serif;
+  --sans:'Outfit',sans-serif;
+  --trans: all 0.22s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:#1a0e04;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;}
 
+/* ─── DEVICE SHELL ─── */
+.device{width:390px;height:844px;background:var(--night);border-radius:52px;padding:10px;box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px #3A200A,inset 0 0 0 1px #4A2E10;position:relative;flex-shrink:0;}
+.screen{width:100%;height:100%;background:var(--cream);border-radius:44px;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+.notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:120px;height:34px;background:var(--night);border-radius:20px;z-index:100;}
+
+/* ─── STATUS BAR ─── */
+.sbar{display:flex;justify-content:space-between;align-items:center;padding:14px 22px 6px;flex-shrink:0;font-size:11px;font-weight:500;}
+.sbar-r{display:flex;gap:5px;align-items:center;}
+.sbar-dot{width:6px;height:6px;border-radius:50%;}
+
+/* ─── VIEWS ─── */
+.view{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateX(30px);}
+.view.active{opacity:1;pointer-events:all;transform:translateX(0);}
+.view.slide-out{transform:translateX(-30px);}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+.scroll::-webkit-scrollbar{display:none;}
+
+/* ─── NAV STRIP ─── */
+.nav-strip{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:.75rem .5rem;background:rgba(26,8,0,.95);position:fixed;bottom:0;left:0;right:0;z-index:1000;border-top:1px solid #2E1A09;}
+.np{font-family:var(--sans);font-size:10px;font-weight:500;padding:5px 10px;border-radius:20px;border:1px solid #3A200A;background:transparent;color:#888;cursor:pointer;letter-spacing:.04em;transition:var(--trans);}
+.np:hover,.np.active{background:var(--copper);color:var(--cream);border-color:var(--copper);}
+
+/* ════════════════════════════════
+   SCREEN 1 — SPLASH
+════════════════════════════════ */
+#splash{background:var(--night);}
+.splash-bg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative;overflow:hidden;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(200,81,26,.12);animation:pulse 3s ease-in-out infinite;}
+.ring1{width:340px;height:340px;top:-80px;right:-100px;animation-delay:0s;}
+.ring2{width:240px;height:240px;bottom:20px;left:-80px;animation-delay:1.5s;}
+.ring3{width:180px;height:180px;top:50%;right:-60px;animation-delay:.8s;}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:.9;transform:scale(1.05);}}
+.logo-box{width:72px;height:72px;background:var(--copper);border-radius:20px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;z-index:1;box-shadow:0 8px 32px rgba(200,81,26,.4);}
+.logo-bars{display:flex;flex-direction:column;gap:5px;}
+.logo-bar{background:var(--cream);border-radius:2px;height:3.5px;}
+.brand-name{font-family:var(--serif);font-size:42px;color:var(--cream);position:relative;z-index:1;margin-bottom:4px;letter-spacing:-.5px;}
+.brand-name span{color:var(--gold-l);}
+.brand-tag{font-size:10px;color:var(--text-m);letter-spacing:.14em;margin-bottom:8px;position:relative;z-index:1;}
+.founder-strip{display:flex;align-items:center;gap:6px;background:rgba(200,81,26,.15);border:1px solid rgba(200,81,26,.3);border-radius:20px;padding:5px 14px;margin-bottom:28px;position:relative;z-index:1;}
+.founder-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-l);}
+.founder-text{font-size:10px;color:var(--gold-l);letter-spacing:.04em;}
+.splash-desc{font-size:13px;color:#9A7A60;text-align:center;line-height:1.75;max-width:230px;margin-bottom:32px;position:relative;z-index:1;}
+.btn{width:100%;padding:15px;border-radius:var(--r);font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;border:none;transition:var(--trans);position:relative;z-index:1;}
+.btn-primary{background:var(--copper);color:var(--cream);margin-bottom:10px;}
+.btn-primary:hover{background:var(--copper-l);transform:translateY(-1px);box-shadow:0 4px 16px rgba(200,81,26,.4);}
+.btn-ghost{background:transparent;color:#888;font-size:12px;padding:8px;}
+.btn-ghost span{color:var(--gold-l);}
+.trial-note{font-size:10px;color:#555;text-align:center;margin-top:8px;position:relative;z-index:1;}
+.splash-footer{padding:12px 0 16px;text-align:center;}
+.splash-footer p{font-size:10px;color:#3A2210;line-height:1.6;}
+.splash-footer strong{color:var(--copper-d);}
+
+/* ════════════════════════════════
+   ONBOARDING SHARED
+════════════════════════════════ */
+.ob-head{background:var(--night);padding:16px 18px 12px;flex-shrink:0;}
+.ob-step{font-size:10px;color:#888;letter-spacing:.1em;margin-bottom:5px;}
+.ob-title{font-family:var(--serif);font-size:22px;color:var(--cream);line-height:1.35;}
+.ob-sub{font-size:12px;color:#888;margin-top:4px;}
+.prog-wrap{background:var(--night);padding:10px 18px;flex-shrink:0;}
+.prog-track{height:3px;background:var(--night3);border-radius:2px;}
+.prog-fill{height:3px;background:var(--copper);border-radius:2px;transition:width .5s ease;}
+.ob-body{flex:1;padding:16px;overflow-y:auto;background:var(--cream);}
+.ob-body::-webkit-scrollbar{display:none;}
+.ob-footer{padding:14px 16px;background:var(--cream);flex-shrink:0;}
+
+/* ════════════════════════════════
+   SCREEN 2 — LANGUAGE
+════════════════════════════════ */
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.lang-tile{border:1.5px solid var(--border);border-radius:var(--r);padding:14px 12px;cursor:pointer;background:var(--cw);transition:var(--trans);}
+.lang-tile:hover,.lang-tile.sel{border-color:var(--copper);background:var(--copper-bg);}
+.lang-name{font-size:14px;font-weight:500;color:var(--text);}
+.lang-sub{font-size:10px;color:var(--copper-d);margin-top:2px;}
+.ob-note{font-size:11px;color:var(--text-m);text-align:center;}
+
+/* ════════════════════════════════
+   SCREEN 3 — INTERESTS
+════════════════════════════════ */
+.chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.chip{border:1.5px solid var(--border);border-radius:var(--r);padding:12px;cursor:pointer;background:var(--cw);text-align:center;transition:var(--trans);}
+.chip:hover,.chip.sel{border-color:var(--copper);background:var(--copper-bg);}
+.chip-ico{width:34px;height:34px;border-radius:9px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.chip-lbl{font-size:12px;font-weight:500;color:var(--text);}
+
+/* ════════════════════════════════
+   SCREEN 4 — IDENTITY
+════════════════════════════════ */
+.id-toggle{display:flex;gap:8px;margin-bottom:16px;}
+.id-btn{flex:1;border:1.5px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;cursor:pointer;background:var(--cw);transition:var(--trans);}
+.id-btn:hover,.id-btn.sel{border-color:var(--copper);background:var(--copper-bg);}
+.id-btn-lbl{font-size:14px;font-weight:500;color:var(--text);}
+.id-btn-sub{font-size:10px;color:var(--copper-d);margin-top:2px;}
+.field{margin-bottom:12px;}
+.field-lbl{font-size:11px;font-weight:500;color:var(--text-s);margin-bottom:5px;}
+.field-inp{border:1.5px solid var(--border);border-radius:var(--r);padding:11px 14px;font-size:13px;color:var(--text);background:var(--cw);width:100%;font-family:var(--sans);transition:var(--trans);outline:none;}
+.field-inp:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(200,81,26,.12);}
+.info-box{background:var(--green-bg);border:1px solid #5DCAA5;border-radius:var(--r);padding:10px 12px;font-size:11px;color:var(--green-d);line-height:1.65;}
+.select-field{border:1.5px solid var(--border);border-radius:var(--r);padding:11px 14px;font-size:13px;color:var(--text);background:var(--cw);width:100%;font-family:var(--sans);outline:none;cursor:pointer;}
+
+/* ════════════════════════════════
+   SCREEN 5 — PAYMENT
+════════════════════════════════ */
+.pay-opt{border:1.5px solid var(--border);border-radius:var(--r);padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--cw);margin-bottom:10px;transition:var(--trans);}
+.pay-opt:hover,.pay-opt.sel{border-color:var(--copper);background:var(--copper-bg);}
+.pay-logo{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.pay-info{flex:1;}
+.pay-name{font-size:13px;font-weight:500;color:var(--text);}
+.pay-desc{font-size:10px;color:var(--text-m);}
+.pay-badge{font-size:10px;background:var(--green);color:var(--green-bg);padding:3px 9px;border-radius:20px;flex-shrink:0;font-weight:500;}
+.trial-box{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:12px;font-size:11px;color:var(--text-s);line-height:1.65;margin-bottom:10px;}
+.trial-box strong{color:var(--copper-d);}
+.sec-note{font-size:10px;color:var(--text-m);text-align:center;cursor:pointer;margin-top:4px;}
+.sec-note:hover{color:var(--copper);}
+
+/* ════════════════════════════════
+   SCREEN 6 — OTP
+════════════════════════════════ */
+.otp-wrap{display:flex;flex-direction:column;align-items:center;padding:28px 20px;}
+.otp-icon{width:64px;height:64px;border-radius:50%;background:var(--copper-bg);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:16px;}
+.otp-title{font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:8px;text-align:center;}
+.otp-sub{font-size:12px;color:var(--text-m);text-align:center;line-height:1.65;margin-bottom:24px;max-width:220px;}
+.otp-boxes{display:flex;gap:10px;margin-bottom:24px;}
+.otp-box{width:54px;height:60px;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:var(--text);background:var(--cw);cursor:pointer;transition:var(--trans);}
+.otp-box.filled{border-color:var(--copper);background:var(--copper-bg);color:var(--copper-d);}
+.otp-box.active{border-color:var(--copper);box-shadow:0 0 0 3px rgba(200,81,26,.2);}
+.otp-resend{font-size:12px;color:var(--text-m);margin-top:8px;}
+.otp-resend span{color:var(--copper);cursor:pointer;font-weight:500;}
+
+/* ════════════════════════════════
+   SCREEN 7 — WELCOME
+════════════════════════════════ */
+.welcome-dark{background:var(--night);padding:28px 20px 20px;flex-shrink:0;}
+.confetti{display:flex;justify-content:center;gap:7px;margin-bottom:16px;}
+.conf{width:9px;height:9px;border-radius:50%;animation:confettiFall 1.5s ease-in-out infinite alternate;}
+@keyframes confettiFall{0%{transform:translateY(0);}100%{transform:translateY(-6px);}}
+.welcome-title{font-family:var(--serif);font-size:26px;color:var(--cream);text-align:center;margin-bottom:6px;}
+.welcome-sub{font-size:12px;color:#888;text-align:center;line-height:1.65;max-width:220px;margin:0 auto;}
+.preview-feed{flex:1;background:var(--cream);border-radius:28px 28px 0 0;padding:16px;overflow-y:auto;}
+.preview-feed::-webkit-scrollbar{display:none;}
+.prev-lbl{font-size:10px;font-weight:500;color:var(--copper-d);letter-spacing:.08em;margin-bottom:10px;}
+.prev-card{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:8px;cursor:pointer;transition:var(--trans);}
+.prev-card:hover{border-color:var(--copper);background:var(--copper-bg);}
+.prev-art{width:42px;height:42px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.prev-info{flex:1;}
+.prev-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.35;}
+.prev-meta{font-size:10px;color:var(--text-m);margin-top:2px;}
+.prev-badge{font-size:9px;padding:2px 8px;border-radius:12px;font-weight:600;flex-shrink:0;}
+.go-btn{background:var(--copper);color:var(--cream);border:none;border-radius:var(--r);padding:14px;font-size:14px;font-weight:500;cursor:pointer;width:100%;margin-top:10px;font-family:var(--sans);transition:var(--trans);}
+.go-btn:hover{background:var(--copper-l);}
+
+/* ════════════════════════════════
+   SCREEN 8 — HOME FEED
+════════════════════════════════ */
+.home-head{background:var(--night);padding:14px 18px 10px;flex-shrink:0;}
+.home-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.home-greet{font-family:var(--serif);font-size:20px;color:var(--cream);}
+.home-sub{font-size:10px;color:#888;margin-top:2px;}
+.avatar-btn{width:36px;height:36px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:600;color:var(--cream);flex-shrink:0;}
+.search-bar{background:var(--night2);margin:10px 18px 0;border-radius:9px;padding:9px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;}
+.search-circle{width:14px;height:14px;border-radius:50%;border:1.5px solid #888;flex-shrink:0;}
+.search-txt{font-size:12px;color:#666;}
+.section{padding:14px 16px 0;}
+.section-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.section-title{font-size:13px;font-weight:500;color:var(--text);}
+.section-more{font-size:11px;color:var(--copper);cursor:pointer;font-weight:500;}
+.feat-card{background:var(--night);border-radius:var(--r-lg);padding:15px;margin-bottom:14px;position:relative;overflow:hidden;cursor:pointer;transition:var(--trans);}
+.feat-card:hover{transform:translateY(-2px);}
+.feat-art{width:100%;height:96px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:12px;}
+.live-badge{position:absolute;top:23px;right:23px;background:var(--copper);color:var(--cream);font-size:9px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.06em;animation:livePulse 2s ease-in-out infinite;}
+@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:.7;}}
+.feat-title{font-family:var(--serif);font-size:16px;color:var(--cream);margin-bottom:4px;}
+.feat-meta{font-size:11px;color:#888;}
+.feat-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px;}
+.play-btn{background:var(--copper);color:var(--cream);border:none;border-radius:8px;padding:7px 16px;font-size:12px;cursor:pointer;font-family:var(--sans);font-weight:500;transition:var(--trans);}
+.play-btn:hover{background:var(--copper-l);}
+.play-meta{font-size:10px;color:#666;}
+.horiz{display:flex;gap:10px;overflow-x:auto;margin-bottom:14px;padding-bottom:4px;}
+.horiz::-webkit-scrollbar{display:none;}
+.mini-card{width:130px;flex-shrink:0;background:var(--cw);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:var(--trans);}
+.mini-card:hover{border-color:var(--copper);transform:translateY(-2px);}
+.mini-art{width:100%;height:72px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.mini-body{padding:8px 10px;}
+.mini-title{font-size:11px;font-weight:500;color:var(--text);line-height:1.35;}
+.mini-meta{font-size:10px;color:var(--text-m);margin-top:2px;}
+.feed-item{display:flex;gap:12px;background:var(--cw);border-radius:var(--r);padding:12px;margin-bottom:9px;border:1px solid var(--border);cursor:pointer;transition:var(--trans);}
+.feed-item:hover{border-color:var(--copper);background:var(--copper-bg);}
+.feed-art-sm{width:48px;height:48px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.feed-body{flex:1;}
+.feed-title-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+.feed-title{font-size:13px;font-weight:500;color:var(--text);flex:1;line-height:1.3;}
+.feed-badge{font-size:9px;padding:2px 7px;border-radius:10px;font-weight:600;flex-shrink:0;}
+.feed-meta{font-size:10px;color:var(--text-m);}
+.bottom-nav{background:var(--night);padding:10px 0 16px;display:flex;justify-content:space-around;flex-shrink:0;}
+.bnav{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:0 12px;}
+.bnav svg{width:22px;height:22px;}
+.bnav-lbl{font-size:9px;color:#666;letter-spacing:.06em;font-weight:500;}
+.bnav.active .bnav-lbl{color:var(--copper-l);}
+.sec-strip{background:var(--night2);padding:8px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0;cursor:pointer;}
+.sec-strip:hover .sec-link{text-decoration:underline;}
+.sec-dot{width:8px;height:8px;border-radius:50%;background:var(--green-l);flex-shrink:0;animation:secPulse 2s ease-in-out infinite;}
+@keyframes secPulse{0%,100%{box-shadow:0 0 0 0 rgba(29,175,122,.4);}50%{box-shadow:0 0 0 4px rgba(29,175,122,0);}}
+.sec-text{font-size:10px;color:#666;flex:1;}
+.sec-link{color:var(--green-l);}
+
+/* ════════════════════════════════
+   SCREEN 9 — EXPLORE
+════════════════════════════════ */
+.explore-head{background:var(--night);padding:14px 18px 12px;flex-shrink:0;}
+.explore-title{font-family:var(--serif);font-size:20px;color:var(--cream);}
+.explore-sub{font-size:10px;color:#888;margin-top:2px;}
+.filter-row{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 4px;flex-shrink:0;}
+.filter-row::-webkit-scrollbar{display:none;}
+.filter-chip{font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--cw);color:var(--text-s);cursor:pointer;white-space:nowrap;transition:var(--trans);flex-shrink:0;}
+.filter-chip:hover,.filter-chip.sel{background:var(--copper);color:var(--cream);border-color:var(--copper);}
+.category-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 16px;}
+.cat-card{border-radius:var(--r-lg);padding:18px 14px;cursor:pointer;transition:var(--trans);position:relative;overflow:hidden;}
+.cat-card:hover{transform:scale(1.02);}
+.cat-emoji{font-size:28px;margin-bottom:8px;}
+.cat-name{font-family:var(--serif);font-size:15px;color:var(--cream);}
+.cat-count{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;}
+.artist-row{display:flex;gap:10px;padding:0 16px 12px;overflow-x:auto;}
+.artist-row::-webkit-scrollbar{display:none;}
+.artist-card{width:90px;flex-shrink:0;text-align:center;cursor:pointer;}
+.artist-avatar{width:60px;height:60px;border-radius:50%;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid transparent;transition:var(--trans);}
+.artist-card:hover .artist-avatar{border-color:var(--copper);}
+.artist-name{font-size:11px;font-weight:500;color:var(--text);}
+.artist-genre{font-size:10px;color:var(--text-m);}
+.trending-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border-l);cursor:pointer;transition:var(--trans);}
+.trending-item:hover{background:var(--copper-bg);}
+.trend-rank{font-size:18px;font-weight:700;color:var(--border);width:28px;flex-shrink:0;}
+.trend-art{width:40px;height:40px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.trend-info{flex:1;}
+.trend-title{font-size:12px;font-weight:500;color:var(--text);}
+.trend-meta{font-size:10px;color:var(--text-m);margin-top:1px;}
+.trend-stat{font-size:11px;font-weight:500;color:var(--copper);}
+
+/* ════════════════════════════════
+   SCREEN 10 — PLAYER
+════════════════════════════════ */
+.player-bg{background:var(--night);flex:1;display:flex;flex-direction:column;}
+.player-header{padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.back-btn{color:var(--copper-l);font-size:20px;cursor:pointer;line-height:1;}
+.player-meta{flex:1;}
+.player-type{font-size:10px;color:#888;letter-spacing:.08em;}
+.player-title{font-family:var(--serif);font-size:16px;color:var(--cream);}
+.player-art-wrap{padding:20px 30px;display:flex;justify-content:center;}
+.player-art{width:240px;height:240px;border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;font-size:72px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.player-info{padding:0 24px;}
+.player-song{font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:4px;}
+.player-artist{font-size:13px;color:var(--copper-l);}
+.progress-area{padding:20px 24px 0;}
+.progress-bar-wrap{height:4px;background:var(--night3);border-radius:2px;cursor:pointer;margin-bottom:8px;}
+.progress-bar{height:4px;background:var(--copper);border-radius:2px;transition:width .5s linear;}
+.time-row{display:flex;justify-content:space-between;font-size:11px;color:#666;}
+.controls{display:flex;align-items:center;justify-content:space-around;padding:20px 24px;}
+.ctrl-btn{background:none;border:none;cursor:pointer;color:#888;font-size:20px;transition:var(--trans);}
+.ctrl-btn:hover{color:var(--cream);}
+.play-pause{width:64px;height:64px;border-radius:50%;background:var(--copper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--cream);transition:var(--trans);box-shadow:0 8px 24px rgba(200,81,26,.4);}
+.play-pause:hover{background:var(--copper-l);transform:scale(1.05);}
+.vol-row{display:flex;align-items:center;gap:10px;padding:0 24px 20px;}
+.vol-icon{font-size:16px;color:#666;}
+.vol-slider{flex:1;height:3px;background:var(--night3);border-radius:2px;position:relative;cursor:pointer;}
+.vol-fill{height:3px;background:var(--copper);border-radius:2px;width:70%;}
+.lyrics-preview{background:var(--night2);border-radius:var(--r-lg);margin:0 18px;padding:14px;border:1px solid var(--night4);}
+.lyrics-lbl{font-size:10px;color:#666;letter-spacing:.08em;margin-bottom:8px;}
+.lyrics-text{font-family:var(--serif);font-size:14px;color:var(--cream);line-height:1.7;font-style:italic;}
+
+/* ════════════════════════════════
+   SCREEN 11 — ARTIST DASHBOARD
+════════════════════════════════ */
+.artist-head{background:var(--night);padding:14px 18px 12px;flex-shrink:0;}
+.artist-title{font-family:var(--serif);font-size:20px;color:var(--cream);}
+.artist-sub{font-size:10px;color:#888;margin-top:2px;}
+.earnings-card{background:var(--night);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;}
+.earn-lbl{font-size:10px;color:#888;margin-bottom:4px;}
+.earn-amt{font-family:var(--serif);font-size:30px;color:var(--gold-l);margin-bottom:4px;}
+.earn-sub{font-size:10px;color:#666;line-height:1.6;margin-bottom:14px;}
+.withdraw-btn{background:var(--green);color:var(--green-bg);border:none;border-radius:var(--r);padding:13px;font-size:13px;cursor:pointer;width:100%;font-family:var(--sans);font-weight:500;transition:var(--trans);}
+.withdraw-btn:hover{background:var(--green-l);}
+.pool-card{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:14px;}
+.pool-title{font-size:10px;color:var(--text-m);margin-bottom:4px;}
+.pool-amt{font-size:16px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.pool-sub{font-size:10px;color:var(--text-m);line-height:1.6;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;}
+.stat-card{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+.stat-lbl{font-size:10px;color:var(--text-m);margin-bottom:4px;}
+.stat-val{font-size:20px;font-weight:600;color:var(--text);}
+.upload-btn{border:1.5px dashed var(--copper);border-radius:var(--r-lg);padding:18px;text-align:center;cursor:pointer;margin-bottom:14px;background:#FEF8F5;transition:var(--trans);}
+.upload-btn:hover{background:var(--copper-bg);}
+.upload-ico{font-size:26px;margin-bottom:6px;}
+.upload-lbl{font-size:13px;font-weight:500;color:var(--copper);}
+.upload-sub{font-size:11px;color:var(--text-m);margin-top:2px;}
+.track-item{display:flex;align-items:center;gap:10px;background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:var(--trans);}
+.track-item:hover{border-color:var(--copper);}
+.track-art{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.track-body{flex:1;}
+.track-name{font-size:12px;font-weight:500;color:var(--text);}
+.track-plays{font-size:10px;color:var(--text-m);margin-top:2px;}
+.track-earn{font-size:13px;font-weight:600;color:var(--green);}
+.zra-box{background:var(--green-bg);border:1px solid #5DCAA5;border-radius:var(--r);padding:12px;margin-top:8px;}
+.zra-title{font-size:12px;font-weight:500;color:var(--green-d);margin-bottom:5px;}
+.zra-text{font-size:11px;color:var(--green-d);line-height:1.65;}
+
+/* ════════════════════════════════
+   SCREEN 12 — UPLOAD
+════════════════════════════════ */
+.upload-screen-head{background:var(--night);padding:14px 18px;flex-shrink:0;}
+.drop-zone{border:2px dashed var(--copper);border-radius:var(--r-xl);padding:30px 20px;text-align:center;margin-bottom:14px;background:#FEF8F5;cursor:pointer;transition:var(--trans);}
+.drop-zone:hover{background:var(--copper-bg);}
+.drop-icon{font-size:40px;margin-bottom:10px;}
+.drop-title{font-size:15px;font-weight:500;color:var(--copper);margin-bottom:4px;}
+.drop-sub{font-size:11px;color:var(--text-m);}
+.format-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px;}
+.fmt-tag{font-size:10px;background:var(--copper-bg);color:var(--copper-d);padding:3px 9px;border-radius:12px;font-weight:500;}
+.meta-section{margin-bottom:14px;}
+.meta-title{font-size:12px;font-weight:500;color:var(--text-s);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;}
+.content-types{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+.ctype{border:1.5px solid var(--border);border-radius:var(--r);padding:10px 6px;text-align:center;cursor:pointer;background:var(--cw);transition:var(--trans);}
+.ctype:hover,.ctype.sel{border-color:var(--copper);background:var(--copper-bg);}
+.ctype-ico{font-size:18px;margin-bottom:4px;}
+.ctype-lbl{font-size:10px;font-weight:500;color:var(--text);}
+.progress-upload{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:14px;}
+.progress-upload-label{font-size:11px;color:var(--text-m);margin-bottom:8px;display:flex;justify-content:space-between;}
+.upload-bar-wrap{height:6px;background:var(--border-l);border-radius:3px;overflow:hidden;}
+.upload-bar-fill{height:6px;background:var(--copper);border-radius:3px;animation:uploadProgress 3s ease-in-out infinite;}
+@keyframes uploadProgress{0%{width:0;}100%{width:78%;}}
+
+/* ════════════════════════════════
+   SCREEN 13 — PROFILE
+════════════════════════════════ */
+.profile-bg{background:var(--night);padding:24px 18px 18px;flex-shrink:0;text-align:center;}
+.profile-avatar-lg{width:72px;height:72px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:600;color:var(--cream);margin:0 auto 12px;border:3px solid var(--copper-l);}
+.profile-name{font-family:var(--serif);font-size:20px;color:var(--cream);}
+.profile-tag{font-size:11px;color:var(--copper-l);margin-top:2px;}
+.profile-tier{display:inline-flex;align-items:center;gap:6px;background:rgba(200,81,26,.2);border:1px solid rgba(200,81,26,.3);border-radius:20px;padding:4px 12px;margin-top:8px;}
+.tier-dot{width:6px;height:6px;border-radius:50%;background:var(--gold-l);}
+.tier-lbl{font-size:10px;color:var(--gold-l);font-weight:500;letter-spacing:.06em;}
+.profile-stats{display:flex;justify-content:space-around;padding:14px 16px;background:var(--cw);border-bottom:1px solid var(--border);}
+.pstat{text-align:center;}
+.pstat-val{font-size:18px;font-weight:600;color:var(--text);}
+.pstat-lbl{font-size:10px;color:var(--text-m);}
+.menu-section{padding:12px 16px 0;}
+.menu-section-title{font-size:10px;font-weight:500;color:var(--text-m);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--cw);border-radius:var(--r);margin-bottom:6px;cursor:pointer;border:1px solid var(--border);transition:var(--trans);}
+.menu-item:hover{border-color:var(--copper);background:var(--copper-bg);}
+.menu-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.menu-label{font-size:13px;font-weight:500;color:var(--text);flex:1;}
+.menu-arrow{font-size:14px;color:var(--text-m);}
+.menu-badge{font-size:10px;background:var(--copper);color:var(--cream);padding:2px 8px;border-radius:10px;font-weight:500;}
+
+/* ════════════════════════════════
+   SCREEN 14 — SECURITY
+════════════════════════════════ */
+.security-head{background:var(--night);padding:14px 18px;flex-shrink:0;}
+.shield-card{background:var(--night);border-radius:var(--r-xl);padding:20px;text-align:center;margin-bottom:14px;}
+.shield-ico{font-size:40px;margin-bottom:10px;}
+.shield-title{font-family:var(--serif);font-size:18px;color:var(--cream);margin-bottom:6px;}
+.shield-sub{font-size:12px;color:#888;line-height:1.65;max-width:220px;margin:0 auto;}
+.sec-feat{display:flex;gap:12px;background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:13px;margin-bottom:8px;}
+.sec-feat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.sec-feat-body{flex:1;}
+.sec-feat-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.sec-feat-desc{font-size:11px;color:var(--text-m);line-height:1.6;}
+.founder-card{background:var(--night);border-radius:var(--r-xl);padding:18px;text-align:center;margin-top:10px;}
+.founder-lbl{font-size:10px;color:#666;letter-spacing:.08em;margin-bottom:8px;}
+.founder-name{font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:3px;}
+.founder-role{font-size:12px;color:var(--copper-l);margin-bottom:3px;}
+.founder-est{font-size:10px;color:#666;}
+.version-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(200,81,26,.15);border:1px solid rgba(200,81,26,.3);border-radius:20px;padding:4px 12px;margin-top:10px;}
+.vtag-text{font-size:10px;color:var(--copper-l);font-weight:500;letter-spacing:.06em;}
+
+/* ════════════════════════════════
+   MODALS
+════════════════════════════════ */
+.modal-overlay{position:absolute;inset:0;background:rgba(22,8,0,.7);z-index:50;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-sheet{background:var(--cw);border-radius:28px 28px 0 0;padding:20px;width:100%;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.modal-overlay.open .modal-sheet{transform:translateY(0);}
+.modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+.modal-title{font-family:var(--serif);font-size:18px;color:var(--text);margin-bottom:12px;}
+.modal-close{background:var(--night);color:var(--cream);border:none;border-radius:var(--r);padding:13px;font-size:13px;cursor:pointer;width:100%;margin-top:10px;font-family:var(--sans);}
+
+/* ════════════════════════════════
+   TOAST
+════════════════════════════════ */
+.toast{position:absolute;bottom:80px;left:16px;right:16px;background:var(--night);color:var(--cream);border-radius:var(--r);padding:12px 16px;font-size:12px;display:flex;align-items:center;gap:10px;z-index:200;transform:translateY(20px);opacity:0;transition:all .3s;pointer-events:none;border:1px solid var(--night4);}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* ════════════════════════════════
+   TIER BADGES
+════════════════════════════════ */
+.tier-guest{background:#3A3A3A;color:#ccc;}
+.tier-user{background:var(--night3);color:var(--gold-l);}
+.tier-creator{background:#1A0A3A;color:#A090FF;}
+.tier-investor{background:#0A1A0A;color:var(--green-l);}
+
+/* ════════════════════════════════
+   NRC SCANNER SCREEN
+════════════════════════════════ */
+#nrcscan{background:var(--cream);}
+.nrc-head{background:var(--night);padding:14px 18px 12px;flex-shrink:0;}
+.nrc-step{font-size:10px;color:#888;letter-spacing:.1em;margin-bottom:5px;}
+.nrc-title{font-family:var(--serif);font-size:22px;color:var(--cream);line-height:1.35;}
+.nrc-sub{font-size:12px;color:#888;margin-top:4px;}
+.nrc-body{flex:1;padding:14px 16px;overflow-y:auto;background:var(--cream);}
+.nrc-body::-webkit-scrollbar{display:none;}
+.nrc-upload{border:2px dashed var(--border);border-radius:var(--r-lg);background:var(--cw);padding:24px 16px;text-align:center;cursor:pointer;position:relative;transition:var(--trans);margin-bottom:12px;}
+.nrc-upload:hover{border-color:var(--copper);background:var(--copper-bg);}
+.nrc-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.nrc-upload-ico{font-size:32px;margin-bottom:8px;}
+.nrc-upload h4{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;}
+.nrc-upload p{font-size:10px;color:var(--text-m);}
+.nrc-preview{display:none;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);margin-bottom:10px;background:#000;}
+.nrc-preview img{width:100%;max-height:140px;object-fit:contain;display:block;}
+.nrc-scan-btn{width:100%;padding:13px;background:var(--copper);color:var(--cream);border:none;border-radius:var(--r);font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;display:none;margin-bottom:10px;transition:var(--trans);position:relative;}
+.nrc-scan-btn:hover{background:var(--copper-l);}
+.nrc-scan-btn:disabled{background:var(--text-m);cursor:not-allowed;}
+.nrc-status{font-size:11px;color:var(--text-m);text-align:center;min-height:16px;margin-bottom:8px;font-style:italic;}
+.nrc-result{display:none;background:var(--cw);border:1.5px solid var(--copper);border-radius:var(--r-lg);overflow:hidden;margin-bottom:10px;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.nrc-result-head{background:var(--copper);padding:10px 14px;display:flex;align-items:center;gap:8px;}
+.nrc-result-head span{font-size:13px;color:var(--cream);font-weight:500;}
+.nrc-fields{padding:12px 14px;}
+.nrc-field{margin-bottom:10px;}
+.nrc-field:last-child{margin-bottom:0;}
+.nrc-field-lbl{font-size:10px;font-weight:500;color:var(--text-m);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;}
+.nrc-field-val{font-size:14px;font-weight:500;color:var(--text);background:var(--cream);border:1.5px solid var(--border);border-radius:var(--r);padding:9px 12px;width:100%;font-family:var(--sans);}
+.nrc-field-val.dob{border-color:#5DCAA5;background:var(--green-bg);color:var(--green-d);}
+.nrc-field-val.nrcnum{border-color:var(--copper-l);background:var(--copper-bg);color:var(--copper-d);}
+.nrc-conf{display:flex;align-items:center;gap:8px;padding:8px 14px;border-top:1px solid var(--border-l);background:var(--cream);}
+.nrc-conf-lbl{font-size:10px;color:var(--text-m);}
+.nrc-conf-bar{flex:1;height:5px;background:var(--border-l);border-radius:3px;overflow:hidden;}
+.nrc-conf-fill{height:5px;border-radius:3px;background:var(--green);transition:width .5s;}
+.nrc-conf-pct{font-size:10px;font-weight:600;color:var(--green);min-width:28px;text-align:right;}
+.nrc-skip{font-size:11px;color:var(--text-m);text-align:center;cursor:pointer;padding:6px;}
+.nrc-skip:hover{color:var(--copper);}
+.nrc-key-wrap{background:var(--cw);border:1px solid var(--border);border-radius:var(--r);padding:10px 12px;margin-bottom:12px;}
+.nrc-key-lbl{font-size:10px;color:var(--text-m);font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.nrc-key-row{display:flex;gap:6px;}
+.nrc-key-inp{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:11px;font-family:var(--sans);color:var(--text);background:var(--cream);outline:none;}
+.nrc-key-inp:focus{border-color:var(--copper);}
+.nrc-key-btn{padding:8px 12px;background:var(--night);color:var(--cream);border:none;border-radius:8px;font-size:11px;font-weight:500;cursor:pointer;font-family:var(--sans);white-space:nowrap;}
+.nrc-key-btn:hover{background:var(--copper);}
+.nrc-saved-tag{font-size:10px;color:var(--green);background:var(--green-bg);border-radius:20px;padding:2px 8px;font-weight:500;display:none;margin-top:4px;display:inline-block;}
+/* Loading overlay for NRC */
+.nrc-loading{position:absolute;inset:0;background:rgba(22,8,0,.75);z-index:300;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-radius:44px;}
+.nrc-loading.on{display:flex;}
+.nrc-spinner{width:36px;height:36px;border:3px solid rgba(200,81,26,.3);border-top-color:var(--copper);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.nrc-loading-txt{font-size:12px;color:var(--cream);font-family:var(--sans);}
+</style>
+</head>
+<body>
+
+<div class="device">
+  <div class="screen" id="mainScreen">
+    <div class="notch"></div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+      <div class="toast-dot" id="toastDot"></div>
+      <span id="toastMsg"></span>
+    </div>
+
+    <!-- MODAL: Security -->
+    <div class="modal-overlay" id="secModal" onclick="closeMod('secModal')">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <div class="modal-title">🔒 Security protocols</div>
+        <div style="display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;">
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--green-l)"></div><div class="sec-feat-body"><div class="sec-feat-title">JWT + OTP — no passwords</div><div class="sec-feat-desc">SMS codes via Africa's Talking. 24h JWT TTL. 30-day refresh token in encrypted keychain.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--copper)"></div><div class="sec-feat-body"><div class="sec-feat-title">SSL certificate pinning</div><div class="sec-feat-desc">SHA-256 fingerprints pinned. All MITM attacks blocked at transport layer.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--purple)"></div><div class="sec-feat-body"><div class="sec-feat-title">Biometric authentication</div><div class="sec-feat-desc">Face ID (iOS) / Fingerprint (Android) on every session. Fallback to OTP.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--gold-l)"></div><div class="sec-feat-body"><div class="sec-feat-title">AES-256 encrypted storage</div><div class="sec-feat-desc">Zero plain-text PII on device. Android Keystore / iOS Keychain.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--red)"></div><div class="sec-feat-body"><div class="sec-feat-title">ZRA compliance auto-engine</div><div class="sec-feat-desc">16% VAT + 2% MoMo Levy deducted from every transaction. Smart Invoices generated.</div></div></div>
+        </div>
+        <button class="modal-close" onclick="closeMod('secModal')">Got it</button>
+      </div>
+    </div>
+
+    <!-- MODAL: Withdraw confirm -->
+    <div class="modal-overlay" id="withdrawModal" onclick="closeMod('withdrawModal')">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <div class="modal-title">💰 Confirm withdrawal</div>
+        <p style="font-size:12px;color:var(--text-m);line-height:1.7;margin-bottom:12px;">Withdraw <strong style="color:var(--text)">K 1,240.00</strong> to your MTN MoMo wallet?<br><br>16% VAT (K198.40) will be automatically deducted per ZRA regulations.<br><br>You will receive: <strong style="color:var(--green)">K 1,041.60</strong></p>
+        <div style="background:var(--green-bg);border:1px solid #5DCAA5;border-radius:var(--r);padding:10px;font-size:11px;color:var(--green-d);line-height:1.6;margin-bottom:10px;">ZRA Smart Invoice will be generated for this transaction automatically.</div>
+        <button class="withdraw-btn" onclick="confirmWithdraw()" style="margin-bottom:8px;">Withdraw K 1,041.60 to MTN MoMo</button>
+        <button class="modal-close" onclick="closeMod('withdrawModal')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- MODAL: Upload form -->
+    <div class="modal-overlay" id="uploadModal" onclick="closeMod('uploadModal')">
+      <div class="modal-sheet" onclick="event.stopPropagation()">
+        <div class="modal-handle"></div>
+        <div class="modal-title">⬆️ Upload content</div>
+        <div style="font-size:11px;color:var(--text-m);line-height:1.6;margin-bottom:12px;">Drag & drop or browse. Max 2GB. Supported: MP3 · MP4 · WAV · PDF · JPG · PNG</div>
+        <div class="drop-zone" style="margin-bottom:12px;" onclick="showToast('📁 File browser opened — select your file','var(--copper)')">
+          <div style="font-size:32px;margin-bottom:8px;">📎</div>
+          <div style="font-size:13px;font-weight:500;color:var(--copper);">Tap to browse files</div>
+        </div>
+        <div class="field"><div class="field-lbl">Content title</div><input class="field-inp" type="text" placeholder="e.g. Kalingalinga Sessions Ep.4"></div>
+        <div class="field"><div class="field-lbl">Content type</div>
+          <select class="select-field"><option>🎵 Music / Beat</option><option>🎬 Film / Video</option><option>🗣️ Oral History</option><option>✍️ Poetry / Writing</option><option>🎨 Visual Art</option><option>🥁 Dance / Ceremony</option><option>🎙️ Podcast</option></select>
+        </div>
+        <button class="btn btn-primary" onclick="closeMod('uploadModal');showToast('✅ Content uploaded and published!','var(--green-l)')">Publish content</button>
+        <button class="modal-close" onclick="closeMod('uploadModal')">Cancel</button>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 1: SPLASH
+    ═════════════════════════════════════ -->
+    <div class="view active" id="splash" style="background:var(--night);">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span><div class="sbar-r"><div class="sbar-dot" style="background:var(--copper)"></div><div class="sbar-dot" style="background:var(--copper);opacity:.5"></div><div class="sbar-dot" style="background:var(--copper);opacity:.3"></div></div></div>
+      <div class="splash-bg">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+        <div class="logo-box"><div class="logo-bars"><div class="logo-bar" style="width:30px"></div><div class="logo-bar" style="width:22px"></div><div class="logo-bar" style="width:30px"></div></div></div>
+        <div class="brand-name">muundo<span>2u</span></div>
+        <div class="brand-tag">STRUCTURE DELIVERED TO YOU</div>
+        <div class="founder-strip"><div class="founder-dot"></div><div class="founder-text">Lusungu Muziya · CEO & Co-Founder · Est. 2026</div></div>
+        <div class="splash-desc">Zambia's arts, music, oral histories and creative voices — all in one sovereign home.</div>
+        <button class="btn btn-primary" onclick="go('language')">Get started — it's free</button>
+        <button class="btn btn-ghost" onclick="go('otp')">Already have an account? <span>Sign in</span></button>
+        <div class="trial-note">7-day free trial · then K70/month · cancel anytime</div>
+      </div>
+      <div class="splash-footer"><p><strong>Muundo2U</strong> · Zambia's Sovereign Creative Infrastructure<br>v1.0.2 · © 2026 Lusungu Muziya · All rights reserved</p></div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 2: LANGUAGE
+    ═════════════════════════════════════ -->
+    <div class="view" id="language">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span><div class="sbar-r"><div class="sbar-dot" style="background:var(--copper)"></div></div></div>
+      <div class="ob-head"><div class="ob-step">STEP 1 OF 5</div><div class="ob-title">What language feels like home?</div><div class="ob-sub">We'll show your feed in your tongue first.</div></div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:20%"></div></div></div>
+      <div class="ob-body">
+        <div class="lang-grid">
+          <div class="lang-tile sel" onclick="selOne(this,'lang-tile')"><div class="lang-name">Bemba</div><div class="lang-sub">Copperbelt · Northern</div></div>
+          <div class="lang-tile" onclick="selOne(this,'lang-tile')"><div class="lang-name">Nyanja</div><div class="lang-sub">Lusaka · Eastern</div></div>
+          <div class="lang-tile" onclick="selOne(this,'lang-tile')"><div class="lang-name">Tonga</div><div class="lang-sub">Southern Province</div></div>
+          <div class="lang-tile" onclick="selOne(this,'lang-tile')"><div class="lang-name">Lozi</div><div class="lang-sub">Western Province</div></div>
+          <div class="lang-tile" onclick="selOne(this,'lang-tile')"><div class="lang-name">Kaonde</div><div class="lang-sub">Northwestern</div></div>
+          <div class="lang-tile" onclick="selOne(this,'lang-tile')"><div class="lang-name">English</div><div class="lang-sub">All regions</div></div>
+        </div>
+        <div class="ob-note">You can add more languages in settings later.</div>
+      </div>
+      <div class="ob-footer"><button class="btn btn-primary" onclick="go('interests')">Continue</button></div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 3: INTERESTS
+    ═════════════════════════════════════ -->
+    <div class="view" id="interests">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="ob-head"><div class="ob-step">STEP 2 OF 5</div><div class="ob-title">What moves your soul?</div><div class="ob-sub">Tap everything that speaks to you.</div></div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:40%"></div></div></div>
+      <div class="ob-body">
+        <div class="chip-grid">
+          <div class="chip sel" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#FEF0E6;">🎵</div><div class="chip-lbl">Music & beats</div></div>
+          <div class="chip sel" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#E8F5EE;">🎬</div><div class="chip-lbl">Film & stories</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#EEEDFE;">🗣️</div><div class="chip-lbl">Oral histories</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#FFF3DC;">✍️</div><div class="chip-lbl">Poetry & writing</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#FEF0E6;">🎨</div><div class="chip-lbl">Visual art</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#E8F5EE;">💃</div><div class="chip-lbl">Dance & ceremony</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#FFF3DC;">🪘</div><div class="chip-lbl">Craft & making</div></div>
+          <div class="chip" onclick="this.classList.toggle('sel')"><div class="chip-ico" style="background:#EEEDFE;">🎙️</div><div class="chip-lbl">Podcasts</div></div>
+        </div>
+      </div>
+      <div class="ob-footer"><button class="btn btn-primary" onclick="go('nrcscan')">Continue</button></div>
+    </div>
+
+    <!-- NRC SCAN LOADING OVERLAY -->
+    <div class="nrc-loading" id="nrcLoading">
+      <div class="nrc-spinner"></div>
+      <div class="nrc-loading-txt">Reading your NRC card…</div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 3b: NRC SCANNER (between interests & identity)
+    ═════════════════════════════════════ -->
+    <div class="view" id="nrcscan">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="nrc-head">
+        <div class="nrc-step">STEP 3 OF 6 — VERIFY IDENTITY</div>
+        <div class="nrc-title">Scan your NRC</div>
+        <div class="nrc-sub">Auto-fills your name, DOB & ID number.</div>
+      </div>
+      <div class="prog-wrap" style="background:var(--night);"><div class="prog-track"><div class="prog-fill" style="width:50%"></div></div></div>
+      <div class="nrc-body">
+
+        <!-- API KEY BOX -->
+        <div class="nrc-key-wrap" id="nrcKeyWrap">
+          <div class="nrc-key-lbl">🔑 Anthropic API Key</div>
+          <div class="nrc-key-row">
+            <input class="nrc-key-inp" type="password" id="nrcKeyInp" placeholder="sk-ant-api03-…" autocomplete="off" />
+            <button class="nrc-key-btn" onclick="saveNrcKey()">Save</button>
+          </div>
+          <span class="nrc-saved-tag" id="nrcSavedTag">✓ Key saved on device</span>
+        </div>
+
+        <!-- UPLOAD ZONE -->
+        <div class="nrc-upload" id="nrcUploadZone">
+          <input type="file" id="nrcFileInput" accept="image/*" capture="environment" />
+          <div class="nrc-upload-ico">📷</div>
+          <h4>Photograph your NRC card</h4>
+          <p>Front or back · JPG or PNG · AI reads both sides</p>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="nrc-preview" id="nrcPreview">
+          <img id="nrcPreviewImg" src="" alt="NRC" />
+        </div>
+
+        <!-- SCAN BUTTON -->
+        <button class="nrc-scan-btn" id="nrcScanBtn" onclick="doNrcScan()">🔍 Scan NRC Card</button>
+        <div class="nrc-status" id="nrcStatus"></div>
+
+        <!-- RESULT -->
+        <div class="nrc-result" id="nrcResult">
+          <div class="nrc-result-head">
+            <span>✅ NRC read — review your details</span>
+          </div>
+          <div class="nrc-fields">
+            <div class="nrc-field">
+              <div class="nrc-field-lbl">Full Name</div>
+              <div class="nrc-field-val" id="nrcOutName">—</div>
+            </div>
+            <div class="nrc-field">
+              <div class="nrc-field-lbl">Date of Birth</div>
+              <div class="nrc-field-val dob" id="nrcOutDob">—</div>
+            </div>
+            <div class="nrc-field">
+              <div class="nrc-field-lbl">NRC / Reg Number</div>
+              <div class="nrc-field-val nrcnum" id="nrcOutNrc">—</div>
+            </div>
+          </div>
+          <div class="nrc-conf">
+            <span class="nrc-conf-lbl">Confidence</span>
+            <div class="nrc-conf-bar"><div class="nrc-conf-fill" id="nrcConfFill" style="width:0%"></div></div>
+            <span class="nrc-conf-pct" id="nrcConfPct">—</span>
+          </div>
+        </div>
+
+        <div style="height:8px;"></div>
+        <div class="nrc-skip" onclick="go('identity')">Skip — enter details manually →</div>
+      </div>
+      <div class="ob-footer">
+        <button class="btn btn-primary" id="nrcContinueBtn" onclick="applyNrcToProfile()" style="display:none;">Use these details →</button>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 4: IDENTITY
+    ═════════════════════════════════════ -->
+    <div class="view" id="identity">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="ob-head"><div class="ob-step">STEP 4 OF 6</div><div class="ob-title">Tell us who you are</div><div class="ob-sub">Shape your entire experience.</div></div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:66%"></div></div></div>
+      <div class="ob-body">
+        <div class="id-toggle">
+          <div class="id-btn sel" onclick="selOne(this,'id-btn')"><div class="id-btn-lbl">👂 Listener</div><div class="id-btn-sub">I want to explore</div></div>
+          <div class="id-btn" onclick="selOne(this,'id-btn')"><div class="id-btn-lbl">🎤 Creator</div><div class="id-btn-sub">I want to publish</div></div>
+        </div>
+        <div id="nrcFilledBanner" style="display:none;background:var(--green-bg);border:1px solid #5DCAA5;border-radius:var(--r);padding:8px 12px;font-size:11px;color:var(--green-d);margin-bottom:12px;">✅ Auto-filled from your NRC scan</div>
+        <div class="field"><div class="field-lbl">Your name</div><input class="field-inp" type="text" placeholder="Bwalya Mwamba" id="userName"></div>
+        <div class="field"><div class="field-lbl">Date of birth</div><input class="field-inp" type="text" placeholder="DD/MM/YYYY" id="userDob"></div>
+        <div class="field"><div class="field-lbl">NRC number</div><input class="field-inp" type="text" placeholder="000000/00/0" id="userNrc"></div>
+        <div class="field"><div class="field-lbl">Phone number</div><input class="field-inp" type="tel" placeholder="+260 97 000 0000" id="userPhone"></div>
+        <div class="field"><div class="field-lbl">Province</div>
+          <select class="select-field"><option>Lusaka Province</option><option>Copperbelt Province</option><option>Eastern Province</option><option>Southern Province</option><option>Western Province</option><option>Northern Province</option><option>Northwestern Province</option><option>Central Province</option><option>Luapula Province</option><option>Muchinga Province</option></select>
+        </div>
+        <div class="info-box">📱 Your phone number is your login — no password needed. We'll send a one-time SMS code.</div>
+      </div>
+      <div class="ob-footer"><button class="btn btn-primary" onclick="go('payment')">Continue</button></div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 5: PAYMENT
+    ═════════════════════════════════════ -->
+    <div class="view" id="payment">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="ob-head"><div class="ob-step">STEP 4 OF 5</div><div class="ob-title">Start your free trial</div><div class="ob-sub">Pick payment — no charge today.</div></div>
+      <div class="prog-wrap"><div class="prog-track"><div class="prog-fill" style="width:80%"></div></div></div>
+      <div class="ob-body">
+        <div class="pay-opt sel" onclick="selOne(this,'pay-opt')">
+          <div class="pay-logo" style="background:#FFCC00;color:#1A0A00;">MTN</div>
+          <div class="pay-info"><div class="pay-name">MTN Mobile Money</div><div class="pay-desc">MoMo · most popular in Zambia</div></div>
+          <div class="pay-badge">K70/mo</div>
+        </div>
+        <div class="pay-opt" onclick="selOne(this,'pay-opt')">
+          <div class="pay-logo" style="background:#E4003A;color:#fff;">AIR</div>
+          <div class="pay-info"><div class="pay-name">Airtel Money</div><div class="pay-desc">Airtel · widely available</div></div>
+          <div class="pay-badge">K70/mo</div>
+        </div>
+        <div class="pay-opt" onclick="selOne(this,'pay-opt')">
+          <div class="pay-logo" style="background:#1A1F71;color:#fff;font-size:10px;">VISA</div>
+          <div class="pay-info"><div class="pay-name">Virtual Mastercard</div><div class="pay-desc">International · USD billing</div></div>
+          <div class="pay-badge">$3/mo</div>
+        </div>
+        <div class="trial-box"><strong>Free for 7 days.</strong> After that K70/month (≈ $3 USD). Cancel before trial ends — zero charge. Payments secured by ZRA Smart Invoice system.</div>
+        <div class="sec-note" onclick="openMod('secModal')">🔒 AES-256 encrypted · SSL pinned · ZRA compliant — tap to view</div>
+      </div>
+      <div class="ob-footer"><button class="btn btn-primary" onclick="go('otp')">Start free trial</button></div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 6: OTP
+    ═════════════════════════════════════ -->
+    <div class="view" id="otp" style="background:var(--cream);">
+      <div class="sbar" style="background:var(--cream);"><span style="color:var(--text-m);font-size:11px;">9:41</span></div>
+      <div class="prog-wrap" style="background:var(--cream);"><div class="prog-track" style="background:var(--border-l)"><div class="prog-fill" style="width:90%"></div></div></div>
+      <div class="scroll">
+        <div class="otp-wrap">
+          <div class="otp-icon">📱</div>
+          <div class="otp-title">Verify your number</div>
+          <div class="otp-sub">We sent a 4-digit code to +260 97 *** 0000. Enter it to activate your account.</div>
+          <div class="otp-boxes" id="otpBoxes">
+            <div class="otp-box active" id="otp0" onclick="fillOtp(0)">_</div>
+            <div class="otp-box" id="otp1" onclick="fillOtp(1)"></div>
+            <div class="otp-box" id="otp2" onclick="fillOtp(2)"></div>
+            <div class="otp-box" id="otp3" onclick="fillOtp(3)"></div>
+          </div>
+          <div class="info-box" style="width:100%;text-align:left;margin-bottom:16px;">💡 <strong>Demo code:</strong> Tap any box to auto-fill the verification code.</div>
+          <button class="btn btn-primary" style="width:220px;margin-bottom:12px;" onclick="go('welcome')">Verify & continue</button>
+          <div class="otp-resend">Didn't get it? <span onclick="showToast('✅ New code sent to +260 97 *** 0000','var(--green-l)')">Resend code</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 7: WELCOME
+    ═════════════════════════════════════ -->
+    <div class="view" id="welcome" style="background:var(--night);flex-direction:column;">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="welcome-dark">
+        <div class="confetti">
+          <div class="conf" style="background:var(--copper);animation-delay:.0s"></div>
+          <div class="conf" style="background:var(--gold-l);animation-delay:.2s"></div>
+          <div class="conf" style="background:var(--green-l);animation-delay:.4s"></div>
+          <div class="conf" style="background:var(--purple);animation-delay:.6s"></div>
+          <div class="conf" style="background:var(--copper-l);animation-delay:.8s"></div>
+        </div>
+        <div class="welcome-title">Mwapoleni, Bwalya!</div>
+        <div class="welcome-sub">Your Muundo2U is live. Here's what we found for you today.</div>
+      </div>
+      <div class="preview-feed">
+        <div class="prev-lbl">YOUR BEMBA FEED — TODAY</div>
+        <div class="prev-card" onclick="go('player')"><div class="prev-art" style="background:#FEF0E6;">🥁</div><div class="prev-info"><div class="prev-title">Nc'wala harvest songs — Elder Nkonde</div><div class="prev-meta">Eastern Province · 42 min</div></div><div class="prev-badge" style="background:var(--red);color:#fff;">LIVE</div></div>
+        <div class="prev-card" onclick="go('player')"><div class="prev-art" style="background:#E8F5EE;">🎵</div><div class="prev-info"><div class="prev-title">Kalingalinga Sessions — Zed Beats Ep.3</div><div class="prev-meta">Tendo C. · 18 min</div></div><div class="prev-badge" style="background:var(--green);color:var(--green-bg);">NEW</div></div>
+        <div class="prev-card" onclick="go('player')"><div class="prev-art" style="background:#EEEDFE;">🎬</div><div class="prev-info"><div class="prev-title">My grandmother's basket — short film</div><div class="prev-meta">Mwape Film · Tonga · 9 min</div></div><div class="prev-badge" style="background:var(--border);color:var(--text-s);">FREE</div></div>
+        <button class="go-btn" onclick="go('home')">Go to my feed →</button>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 8: HOME FEED
+    ═════════════════════════════════════ -->
+    <div class="view" id="home">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span><div class="sbar-r"><div class="sbar-dot" style="background:var(--green-l)"></div></div></div>
+      <div class="home-head">
+        <div class="home-top"><div><div class="home-greet">Mwapoleni, Bwalya</div><div class="home-sub">Bemba feed · 47 new pieces today</div></div><div class="avatar-btn" onclick="go('profile')">B</div></div>
+        <div class="search-bar" onclick="showToast('🔍 Search — artists, songs, oral histories...','var(--copper)')"><div class="search-circle"></div><div class="search-txt">Search artists, songs, stories...</div></div>
+      </div>
+      <div class="scroll">
+        <div class="section">
+          <div class="section-hd"><div class="section-title">Featured today</div><div class="section-more" onclick="showToast('Loading all featured content...','var(--copper)')">See all</div></div>
+          <div class="feat-card" onclick="go('player')">
+            <div class="feat-art" style="background:var(--night3);">🥁</div>
+            <div class="live-badge">LIVE NOW</div>
+            <div class="feat-title">Nc'wala Harvest Songs</div>
+            <div class="feat-meta">Elder Nkonde Zulu · Eastern Province · Oral History</div>
+            <div class="feat-actions"><button class="play-btn" onclick="event.stopPropagation();go('player')">▶ Play now</button><div class="play-meta">42 min · 1,240 listening</div></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-hd"><div class="section-title">Music & beats</div><div class="section-more">See all</div></div>
+          <div class="horiz">
+            <div class="mini-card" onclick="go('player')"><div class="mini-art" style="background:#FEF0E6;">🎵</div><div class="mini-body"><div class="mini-title">Kalingalinga Sessions Ep.3</div><div class="mini-meta">Tendo C. · 18 min</div></div></div>
+            <div class="mini-card" onclick="go('player')"><div class="mini-art" style="background:#E8F5EE;">🎸</div><div class="mini-body"><div class="mini-title">Lusaka Nights Vol.2</div><div class="mini-meta">DJ Mwaba · 54 min</div></div></div>
+            <div class="mini-card" onclick="go('player')"><div class="mini-art" style="background:#EEEDFE;">🎹</div><div class="mini-body"><div class="mini-title">Kalimba Dreams</div><div class="mini-meta">Chanda K. · 31 min</div></div></div>
+            <div class="mini-card" onclick="go('player')"><div class="mini-art" style="background:#FFF3DC;">🪗</div><div class="mini-body"><div class="mini-title">Copperbelt Roots</div><div class="mini-meta">Various · 1h 12m</div></div></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-hd"><div class="section-title">Your feed</div><div class="section-more">Filter</div></div>
+          <div class="feed-item" onclick="go('player')"><div class="feed-art-sm" style="background:#FEF0E6;">🎬</div><div class="feed-body"><div class="feed-title-row"><div class="feed-title">My grandmother's basket</div><div class="feed-badge" style="background:var(--green);color:var(--green-bg);">NEW</div></div><div class="feed-meta">Mwape Film · Tonga · Short film · 9 min</div></div></div>
+          <div class="feed-item" onclick="go('player')"><div class="feed-art-sm" style="background:#E8F5EE;">✍️</div><div class="feed-body"><div class="feed-title-row"><div class="feed-title">Letters from Ndola — poetry</div></div><div class="feed-meta">Nakamba P. · Bemba · 22 poems</div></div></div>
+          <div class="feed-item" onclick="go('player')"><div class="feed-art-sm" style="background:#EEEDFE;">🗣️</div><div class="feed-body"><div class="feed-title-row"><div class="feed-title">Makishi mask lore</div><div class="feed-badge" style="background:var(--red);color:#fff;">LIVE</div></div><div class="feed-meta">Elder Mwanza · Northwestern · 1h 8min</div></div></div>
+          <div class="feed-item" onclick="go('player')"><div class="feed-art-sm" style="background:#FFF3DC;">🎨</div><div class="feed-body"><div class="feed-title-row"><div class="feed-title">Copper wire sculptures</div></div><div class="feed-meta">Mutale Arts · 48 pieces · Copperbelt</div></div></div>
+          <div class="feed-item" onclick="go('player')"><div class="feed-art-sm" style="background:#FEF0E6;">🥁</div><div class="feed-body"><div class="feed-title-row"><div class="feed-title">Kuomboka ceremony — 2024</div></div><div class="feed-meta">Royal Litunga Foundation · Lozi · 3h 20min</div></div></div>
+        </div>
+        <div style="height:16px;"></div>
+      </div>
+      <div class="sec-strip" onclick="openMod('secModal')"><div class="sec-dot"></div><div class="sec-text">SSL pinned · OTP verified · AES-256 · ZRA compliant — <span class="sec-link">View security</span></div></div>
+      <div class="bottom-nav">
+        <div class="bnav active" onclick="go('home')"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#E8793A"/><rect x="13" y="2" width="7" height="7" rx="1.5" fill="#E8793A" opacity=".4"/><rect x="2" y="13" width="7" height="7" rx="1.5" fill="#E8793A" opacity=".4"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="#E8793A" opacity=".4"/></svg><div class="bnav-lbl" style="color:var(--copper-l);">HOME</div></div>
+        <div class="bnav" onclick="go('explore')"><svg viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#666" stroke-width="1.5"/><path d="M15 15l3 3" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">EXPLORE</div></div>
+        <div class="bnav" onclick="go('artist')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#666" stroke-width="1.5"/><path d="M4 19c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">ARTIST</div></div>
+        <div class="bnav" onclick="go('profile')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#666" stroke-width="1.5"/><path d="M5 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">PROFILE</div></div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 9: EXPLORE
+    ═════════════════════════════════════ -->
+    <div class="view" id="explore">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="explore-head"><div class="explore-title">Explore</div><div class="explore-sub">Zambia's living creative archive</div></div>
+      <div class="scroll">
+        <div class="filter-row">
+          <div class="filter-chip sel" onclick="selOne(this,'filter-chip')">All</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Music</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Film</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Oral History</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Poetry</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Visual Art</div>
+          <div class="filter-chip" onclick="selOne(this,'filter-chip')">Podcasts</div>
+        </div>
+        <div class="section-hd" style="padding:12px 16px 0;"><div class="section-title">Browse by format</div></div>
+        <div class="category-grid">
+          <div class="cat-card" style="background:linear-gradient(135deg,#2E1A09,#C8511A);" onclick="go('player')"><div class="cat-emoji">🎵</div><div class="cat-name">Music & Beats</div><div class="cat-count">1,240 pieces</div></div>
+          <div class="cat-card" style="background:linear-gradient(135deg,#0A2A1A,#0F7A56);" onclick="go('player')"><div class="cat-emoji">🎬</div><div class="cat-name">Film & Stories</div><div class="cat-count">428 pieces</div></div>
+          <div class="cat-card" style="background:linear-gradient(135deg,#1A1A3A,#5B4AE8);" onclick="go('player')"><div class="cat-emoji">🗣️</div><div class="cat-name">Oral Histories</div><div class="cat-count">890 pieces</div></div>
+          <div class="cat-card" style="background:linear-gradient(135deg,#2A1A00,#D4970A);" onclick="go('player')"><div class="cat-emoji">✍️</div><div class="cat-name">Poetry</div><div class="cat-count">312 pieces</div></div>
+        </div>
+        <div class="section-hd" style="padding:12px 16px 8px;"><div class="section-title">Featured artists</div><div class="section-more">See all</div></div>
+        <div class="artist-row">
+          <div class="artist-card" onclick="go('player')"><div class="artist-avatar" style="background:#FEF0E6;">🎵</div><div class="artist-name">Tendo C.</div><div class="artist-genre">Zed Beats</div></div>
+          <div class="artist-card" onclick="go('player')"><div class="artist-avatar" style="background:#E8F5EE;">🥁</div><div class="artist-name">Elder Nkonde</div><div class="artist-genre">Oral History</div></div>
+          <div class="artist-card" onclick="go('player')"><div class="artist-avatar" style="background:#EEEDFE;">🎬</div><div class="artist-name">Mwape Film</div><div class="artist-genre">Short Film</div></div>
+          <div class="artist-card" onclick="go('player')"><div class="artist-avatar" style="background:#FFF3DC;">🎨</div><div class="artist-name">Mutale Arts</div><div class="artist-genre">Visual Art</div></div>
+          <div class="artist-card" onclick="go('player')"><div class="artist-avatar" style="background:#FEF0E6;">✍️</div><div class="artist-name">Nakamba P.</div><div class="artist-genre">Poetry</div></div>
+        </div>
+        <div class="section-hd" style="padding:12px 16px 8px;"><div class="section-title">Trending this week</div></div>
+        <div class="trending-item" onclick="go('player')"><div class="trend-rank">1</div><div class="trend-art" style="background:#FEF0E6;">🥁</div><div class="trend-info"><div class="trend-title">Nc'wala Harvest Songs</div><div class="trend-meta">Elder Nkonde · Eastern Province</div></div><div class="trend-stat">↑ 1,240</div></div>
+        <div class="trending-item" onclick="go('player')"><div class="trend-rank">2</div><div class="trend-art" style="background:#E8F5EE;">🎵</div><div class="trend-info"><div class="trend-title">Kalingalinga Sessions Ep.3</div><div class="trend-meta">Tendo C. · Lusaka</div></div><div class="trend-stat">↑ 890</div></div>
+        <div class="trending-item" onclick="go('player')"><div class="trend-rank">3</div><div class="trend-art" style="background:#EEEDFE;">🎬</div><div class="trend-info"><div class="trend-title">My grandmother's basket</div><div class="trend-meta">Mwape Film · Tonga</div></div><div class="trend-stat">↑ 644</div></div>
+        <div class="trending-item" onclick="go('player')"><div class="trend-rank">4</div><div class="trend-art" style="background:#FFF3DC;">🗣️</div><div class="trend-info"><div class="trend-title">Makishi mask lore — full</div><div class="trend-meta">Elder Mwanza · Northwestern</div></div><div class="trend-stat">↑ 521</div></div>
+        <div class="trending-item" onclick="go('player')"><div class="trend-rank">5</div><div class="trend-art" style="background:#FEF0E6;">🎨</div><div class="trend-info"><div class="trend-title">Copper wire sculptures</div><div class="trend-meta">Mutale Arts · Copperbelt</div></div><div class="trend-stat">↑ 488</div></div>
+        <div style="height:16px;"></div>
+      </div>
+      <div class="bottom-nav">
+        <div class="bnav" onclick="go('home')"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#666"/><rect x="13" y="2" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="2" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/></svg><div class="bnav-lbl">HOME</div></div>
+        <div class="bnav active" onclick="go('explore')"><svg viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#E8793A" stroke-width="1.5"/><path d="M15 15l3 3" stroke="#E8793A" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl" style="color:var(--copper-l);">EXPLORE</div></div>
+        <div class="bnav" onclick="go('artist')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#666" stroke-width="1.5"/><path d="M4 19c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">ARTIST</div></div>
+        <div class="bnav" onclick="go('profile')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#666" stroke-width="1.5"/><path d="M5 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">PROFILE</div></div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 10: PLAYER
+    ═════════════════════════════════════ -->
+    <div class="view" id="player" style="background:var(--night);">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="player-bg">
+        <div class="player-header">
+          <div class="back-btn" onclick="go('home')">←</div>
+          <div class="player-meta"><div class="player-type">NOW PLAYING · ORAL HISTORY</div><div class="player-title">Nc'wala Harvest Songs</div></div>
+        </div>
+        <div class="player-art-wrap"><div class="player-art" style="background:linear-gradient(135deg,var(--night3),var(--copper-d));">🥁</div></div>
+        <div class="player-info">
+          <div class="player-song">Nc'wala Harvest Songs</div>
+          <div class="player-artist">Elder Nkonde Zulu · Eastern Province</div>
+        </div>
+        <div class="progress-area">
+          <div class="progress-bar-wrap" onclick="seekBar(event)"><div class="progress-bar" id="playerBar" style="width:34%"></div></div>
+          <div class="time-row"><span id="curTime">14:23</span><span>42:00</span></div>
+        </div>
+        <div class="controls">
+          <button class="ctrl-btn" onclick="showToast('⏮ Previous track','var(--copper)')">⏮</button>
+          <button class="ctrl-btn" onclick="showToast('⏪ Rewind 15s','var(--text-m)')">⏪</button>
+          <button class="play-pause" id="playPauseBtn" onclick="togglePlay()">▶</button>
+          <button class="ctrl-btn" onclick="showToast('⏩ Forward 15s','var(--text-m)')">⏩</button>
+          <button class="ctrl-btn" onclick="showToast('⏭ Next track','var(--copper)')">⏭</button>
+        </div>
+        <div class="vol-row"><span class="vol-icon">🔈</span><div class="vol-slider"><div class="vol-fill"></div></div><span class="vol-icon">🔊</span></div>
+        <div class="lyrics-preview">
+          <div class="lyrics-lbl">ORAL TRANSCRIPT · BEMBA</div>
+          <div class="lyrics-text">"Nc'wala ni mutendeke wa kulisha... The harvest is the blessing of those who tilled with patience. Our grandmothers sang this when the corn was tall..."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 11: ARTIST DASHBOARD
+    ═════════════════════════════════════ -->
+    <div class="view" id="artist">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="artist-head"><div class="artist-title">Artist dashboard</div><div class="artist-sub">Tendo Chanda · Lusaka · Creator Tier · K150/mo</div></div>
+      <div class="scroll">
+        <div style="padding:14px;">
+          <div class="earnings-card">
+            <div class="earn-lbl">This month's earnings — MSPS 20% royalty pool</div>
+            <div class="earn-amt">K 1,240.00</div>
+            <div class="earn-sub">Based on 3.2% stream share · Auto VAT deducted · Ready to withdraw</div>
+            <button class="withdraw-btn" onclick="openMod('withdrawModal')">Withdraw to MTN MoMo →</button>
+          </div>
+          <div class="pool-card">
+            <div class="pool-title">Platform royalty pool this month (all artists)</div>
+            <div class="pool-amt">K 86,112 (≈ $3,690 USD)</div>
+            <div class="pool-sub">20% of K430,560 gross · VAT K68,890 remitted to ZRA · MoMo levy K8,611 remitted</div>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-card"><div class="stat-lbl">Total streams</div><div class="stat-val" style="color:var(--copper);">14,820</div></div>
+            <div class="stat-card"><div class="stat-lbl">Subscribers following</div><div class="stat-val">2,340</div></div>
+            <div class="stat-card"><div class="stat-lbl">Content pieces</div><div class="stat-val">12</div></div>
+            <div class="stat-card"><div class="stat-lbl">Avg rating</div><div class="stat-val" style="color:var(--green);">4.8 ★</div></div>
+          </div>
+          <div class="upload-btn" onclick="openMod('uploadModal')">
+            <div class="upload-ico">⬆️</div>
+            <div class="upload-lbl">Upload new content</div>
+            <div class="upload-sub">MP3 · MP4 · PDF · Images · Audio · Video · Max 2GB</div>
+          </div>
+          <div class="section-title" style="margin-bottom:10px;">Content performance</div>
+          <div class="track-item" onclick="go('player')"><div class="track-art" style="background:#FEF0E6;">🎵</div><div class="track-body"><div class="track-name">Kalingalinga Sessions Ep.3</div><div class="track-plays">8,420 streams · 18 min</div></div><div class="track-earn">K 640</div></div>
+          <div class="track-item" onclick="go('player')"><div class="track-art" style="background:#E8F5EE;">🎙️</div><div class="track-body"><div class="track-name">Lusaka Beats Podcast Ep.7</div><div class="track-plays">4,200 streams · 42 min</div></div><div class="track-earn">K 380</div></div>
+          <div class="track-item" onclick="go('player')"><div class="track-art" style="background:#EEEDFE;">🎬</div><div class="track-body"><div class="track-name">One Room Studio — mini doc</div><div class="track-plays">2,200 streams · 11 min</div></div><div class="track-earn">K 220</div></div>
+          <div class="zra-box">
+            <div class="zra-title">ZRA compliance — fully automatic</div>
+            <div class="zra-text">All payouts have 16% VAT and 2% Mobile Money Levy automatically deducted before disbursement. Smart Invoices generated for every transaction. Your monthly tax obligations are handled by Muundo2U's tax engine. No manual filing required.</div>
+          </div>
+          <div style="height:16px;"></div>
+        </div>
+      </div>
+      <div class="sec-strip" onclick="openMod('secModal')"><div class="sec-dot"></div><div class="sec-text">Payouts via MTN MoMo Open API · 16% VAT auto-deducted · <span class="sec-link">Security details</span></div></div>
+      <div class="bottom-nav">
+        <div class="bnav" onclick="go('home')"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#666"/><rect x="13" y="2" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="2" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/></svg><div class="bnav-lbl">HOME</div></div>
+        <div class="bnav" onclick="go('explore')"><svg viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#666" stroke-width="1.5"/><path d="M15 15l3 3" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">EXPLORE</div></div>
+        <div class="bnav active"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#E8793A" stroke-width="1.5"/><path d="M4 19c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#E8793A" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl" style="color:var(--copper-l);">ARTIST</div></div>
+        <div class="bnav" onclick="go('profile')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#666" stroke-width="1.5"/><path d="M5 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">PROFILE</div></div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 12: PROFILE
+    ═════════════════════════════════════ -->
+    <div class="view" id="profile">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="profile-bg">
+        <div class="profile-avatar-lg">B</div>
+        <div class="profile-name">Bwalya Mwamba</div>
+        <div class="profile-tag">+260 97 000 0000 · Lusaka Province</div>
+        <div class="profile-tier"><div class="tier-dot"></div><div class="tier-lbl">USER TIER · K70/month</div></div>
+      </div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-val">247</div><div class="pstat-lbl">Saved</div></div>
+        <div class="pstat"><div class="pstat-val">1,840</div><div class="pstat-lbl">Listened</div></div>
+        <div class="pstat"><div class="pstat-val">32</div><div class="pstat-lbl">Following</div></div>
+        <div class="pstat"><div class="pstat-val">Bemba</div><div class="pstat-lbl">Language</div></div>
+      </div>
+      <div class="scroll">
+        <div class="menu-section">
+          <div class="menu-section-title">Account</div>
+          <div class="menu-item" onclick="showToast('📱 Edit profile','var(--copper)')"><div class="menu-icon" style="background:#FEF0E6;">👤</div><div class="menu-label">Edit profile</div><div class="menu-arrow">›</div></div>
+          <div class="menu-item" onclick="showToast('🌍 Language settings','var(--copper)')"><div class="menu-icon" style="background:#E8F5EE;">🌍</div><div class="menu-label">Language & region</div><div class="menu-arrow">›</div></div>
+          <div class="menu-item" onclick="showToast('💳 Subscription: K70/month — MTN MoMo','var(--green-l)')"><div class="menu-icon" style="background:#FFF3DC;">💳</div><div class="menu-label">Subscription & billing</div><div class="menu-badge">ACTIVE</div></div>
+        </div>
+        <div class="menu-section">
+          <div class="menu-section-title">Tier upgrades</div>
+          <div class="menu-item" onclick="showToast('🎤 Creator Tier — K150/month · Unlock analytics, upload, API ticketing','var(--purple)')"><div class="menu-icon" style="background:#EEEDFE;">🎤</div><div class="menu-label">Upgrade to Creator</div><div class="menu-badge" style="background:var(--purple);">K150/mo</div></div>
+          <div class="menu-item" onclick="showToast('⭐ Investor Tier — K2,350/month · Algorithmic reports + creator equity','var(--gold-l)')"><div class="menu-icon" style="background:#FFF3DC;">⭐</div><div class="menu-label">Investor Tier</div><div class="menu-badge" style="background:var(--gold);color:#FFF3DC;">K2,350</div></div>
+        </div>
+        <div class="menu-section">
+          <div class="menu-section-title">App</div>
+          <div class="menu-item" onclick="go('security')"><div class="menu-icon" style="background:#E8F5EE;">🔒</div><div class="menu-label">Security & privacy</div><div class="menu-arrow">›</div></div>
+          <div class="menu-item" onclick="showToast('🔔 Notifications configured','var(--copper)')"><div class="menu-icon" style="background:#FEF0E6;">🔔</div><div class="menu-label">Notifications</div><div class="menu-arrow">›</div></div>
+          <div class="menu-item" onclick="showToast('❓ Help & support — hello@muundo2u.zm','var(--copper)')"><div class="menu-icon" style="background:#EEEDFE;">❓</div><div class="menu-label">Help & support</div><div class="menu-arrow">›</div></div>
+          <div class="menu-item" onclick="showToast('📊 Muundo2U v1.0.2 · CEO: Lusungu Muziya · Est. 2026','var(--gold-l)')"><div class="menu-icon" style="background:#FFF3DC;">ℹ️</div><div class="menu-label">About Muundo2U</div><div class="menu-arrow">›</div></div>
+        </div>
+        <div class="menu-section">
+          <div class="menu-item" style="border-color:#FDECEA;background:#FDECEA;" onclick="go('splash');showToast('👋 Signed out successfully','var(--text-m)')"><div class="menu-icon" style="background:#FDECEA;">🚪</div><div class="menu-label" style="color:var(--red);">Sign out</div></div>
+        </div>
+        <div style="height:20px;"></div>
+      </div>
+      <div class="bottom-nav">
+        <div class="bnav" onclick="go('home')"><svg viewBox="0 0 22 22" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#666"/><rect x="13" y="2" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="2" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/><rect x="13" y="13" width="7" height="7" rx="1.5" fill="#666" opacity=".4"/></svg><div class="bnav-lbl">HOME</div></div>
+        <div class="bnav" onclick="go('explore')"><svg viewBox="0 0 22 22" fill="none"><circle cx="10" cy="10" r="7" stroke="#666" stroke-width="1.5"/></svg><div class="bnav-lbl">EXPLORE</div></div>
+        <div class="bnav" onclick="go('artist')"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#666" stroke-width="1.5"/><path d="M4 19c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#666" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl">ARTIST</div></div>
+        <div class="bnav active"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3" stroke="#E8793A" stroke-width="1.5"/><path d="M5 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#E8793A" stroke-width="1.5" stroke-linecap="round"/></svg><div class="bnav-lbl" style="color:var(--copper-l);">PROFILE</div></div>
+      </div>
+    </div>
+
+    <!-- ═════════════════════════════════════
+         VIEW 13: SECURITY
+    ═════════════════════════════════════ -->
+    <div class="view" id="security">
+      <div class="sbar" style="background:var(--night);"><span style="color:#888;font-size:11px;">9:41</span></div>
+      <div class="security-head"><div style="color:var(--copper-l);font-size:14px;cursor:pointer;margin-bottom:8px;" onclick="go('profile')">← Back</div><div class="artist-title">Security & privacy</div><div class="artist-sub">Muundo2U v1.0.2 · Lusungu Muziya</div></div>
+      <div class="scroll">
+        <div style="padding:14px;">
+          <div class="shield-card">
+            <div class="shield-ico">🔒</div>
+            <div class="shield-title">Bank-grade security</div>
+            <div class="shield-sub">Enterprise-level protocols protecting every Zambian artist and subscriber on the platform.</div>
+          </div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--green-l)"></div><div class="sec-feat-body"><div class="sec-feat-title">JWT + OTP authentication</div><div class="sec-feat-desc">No passwords stored anywhere. SMS one-time codes via Africa's Talking API. JWT tokens expire in 24h. Refresh tokens: 30-day TTL in encrypted keychain only.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--copper)"></div><div class="sec-feat-body"><div class="sec-feat-title">SSL certificate pinning</div><div class="sec-feat-desc">All API calls pinned against SHA-256 certificate fingerprints for api.muundo2u.zm and payments.muundo2u.zm. Man-in-the-middle attacks blocked at transport layer.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--purple)"></div><div class="sec-feat-body"><div class="sec-feat-title">Biometric authentication</div><div class="sec-feat-desc">Face ID (iOS) and Fingerprint (Android) required on every session open. Fallback to OTP if biometrics unavailable. Powered by platform Keystore APIs.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--gold-l)"></div><div class="sec-feat-body"><div class="sec-feat-title">AES-256 encrypted storage</div><div class="sec-feat-desc">Zero plain-text PII stored on device. Android Keystore system on Android. iOS Keychain (kSecAttrAccessibleWhenUnlocked) on iOS. All financial data encrypted at rest.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--red)"></div><div class="sec-feat-body"><div class="sec-feat-title">Root & jailbreak detection</div><div class="sec-feat-desc">App detects compromised devices on every launch and alerts users. Prevents keychain extraction attacks on rooted Android and jailbroken iOS devices.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--green)"></div><div class="sec-feat-body"><div class="sec-feat-title">ZRA Smart Invoice compliance</div><div class="sec-feat-desc">16% VAT + 2% MoMo Levy automatically deducted and remitted from every transaction. Smart Invoices generated for all payments and artist payouts. Monthly VAT returns filed automatically by 21st.</div></div></div>
+          <div class="sec-feat"><div class="sec-feat-dot" style="background:var(--copper-l)"></div><div class="sec-feat-body"><div class="sec-feat-title">Certificate transparency</div><div class="sec-feat-desc">All Muundo2U TLS certificates logged to public CT logs. Protection against mis-issued certificates. Enforced natively on iOS (ATS) and verified programmatically on Android.</div></div></div>
+          <div class="founder-card">
+            <div class="founder-lbl">PLATFORM FOUNDER</div>
+            <div class="founder-name">Lusungu Muziya</div>
+            <div class="founder-role">CEO & Co-Founder · Muundo2U</div>
+            <div class="founder-est">Est. 2026 · Zambia · v1.0.2</div>
+            <div class="version-tag"><div class="vtag-text">🇿🇲 ZAMBIA'S SOVEREIGN CREATIVE INFRASTRUCTURE</div></div>
+          </div>
+          <div style="height:20px;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end screen -->
+</div><!-- end device -->
+
+<!-- NAV STRIP -->
+<div class="nav-strip">
+  <div class="np active" onclick="nav('splash')">Splash</div>
+  <div class="np" onclick="nav('language')">Language</div>
+  <div class="np" onclick="nav('interests')">Interests</div>
+  <div class="np" onclick="nav('nrcscan')">NRC Scan</div>
+  <div class="np" onclick="nav('identity')">Profile</div>
+  <div class="np" onclick="nav('payment')">Payment</div>
+  <div class="np" onclick="nav('otp')">OTP</div>
+  <div class="np" onclick="nav('welcome')">Welcome</div>
+  <div class="np" onclick="nav('home')">Feed</div>
+  <div class="np" onclick="nav('explore')">Explore</div>
+  <div class="np" onclick="nav('player')">Player</div>
+  <div class="np" onclick="nav('artist')">Artist</div>
+  <div class="np" onclick="nav('profile')">Profile</div>
+  <div class="np" onclick="nav('security')">Security</div>
+</div>
+
+<script>
+let current = 'splash';
+let playing = false;
+let playerInterval = null;
+let playerSeconds = 863;
+let nrcImageBase64 = null;
+let nrcResult = null;
+
+function go(id) {
+  const prev = document.getElementById(current);
+  if(prev) prev.classList.remove('active');
+  current = id;
+  const next = document.getElementById(id);
+  if(next) next.classList.add('active');
+  document.querySelectorAll('.np').forEach(p => p.classList.remove('active'));
+  const pills = document.querySelectorAll('.np');
+  const map = {splash:0,language:1,interests:2,nrcscan:3,identity:4,payment:5,otp:6,welcome:7,home:8,explore:9,player:10,artist:11,profile:12,security:13};
+  if(map[id] !== undefined) pills[map[id]].classList.add('active');
+  const s = document.querySelector(`#${id} .scroll`);
+  if(s) s.scrollTop = 0;
+  if(id === 'nrcscan') initNrcKeyPanel();
+}
+
+// ── NRC SCANNER ──────────────────────────────
+function getNrcKey() {
+  const url = new URLSearchParams(window.location.search).get('key');
+  if(url){ localStorage.setItem('m2u_nrc_key', url); return url; }
+  return localStorage.getItem('m2u_nrc_key') || null;
+}
+function saveNrcKey() {
+  const v = document.getElementById('nrcKeyInp').value.trim();
+  if(!v.startsWith('sk-ant')){ showToast('⚠ Key should start with sk-ant-','var(--gold-l)'); return; }
+  localStorage.setItem('m2u_nrc_key', v);
+  document.getElementById('nrcKeyInp').value = '';
+  document.getElementById('nrcKeyInp').placeholder = 'sk-ant-••••••••' + v.slice(-4);
+  document.getElementById('nrcSavedTag').style.display = 'inline-block';
+  showToast('✅ API key saved on device','var(--green-l)');
+}
+function initNrcKeyPanel() {
+  const k = getNrcKey();
+  if(k){
+    document.getElementById('nrcKeyInp').placeholder = 'sk-ant-••••••••' + k.slice(-4);
+    document.getElementById('nrcSavedTag').style.display = 'inline-block';
+  }
+}
+
+document.getElementById('nrcFileInput').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    nrcImageBase64 = ev.target.result.split(',')[1];
+    document.getElementById('nrcPreviewImg').src = ev.target.result;
+    document.getElementById('nrcPreview').style.display = 'block';
+    document.getElementById('nrcScanBtn').style.display = 'block';
+    document.getElementById('nrcStatus').textContent = 'Image ready — tap Scan to extract details.';
+    document.getElementById('nrcResult').style.display = 'none';
+    document.getElementById('nrcContinueBtn').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+
+async function doNrcScan() {
+  if(!nrcImageBase64) return;
+  const key = getNrcKey();
+  if(!key){
+    showToast('⚠ Enter your API key above first','var(--gold-l)');
+    document.getElementById('nrcKeyInp').focus();
+    return;
+  }
+  document.getElementById('nrcLoading').classList.add('on');
+  document.getElementById('nrcScanBtn').disabled = true;
+  document.getElementById('nrcStatus').textContent = 'AI is reading your NRC card…';
+  document.getElementById('nrcResult').style.display = 'none';
+  document.getElementById('nrcContinueBtn').style.display = 'none';
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-calls':'true'
+      },
+      body: JSON.stringify({
+        model:'claude-opus-4-5',
+        max_tokens:400,
+        messages:[{
+          role:'user',
+          content:[
+            { type:'image', source:{ type:'base64', media_type:'image/jpeg', data: nrcImageBase64 }},
+            { type:'text', text:`You are scanning a Zambian National Registration Card (NRC) for the Muundo2U creative platform artist onboarding. Extract ONLY these 3 fields. Respond with ONLY raw JSON — no markdown, no backticks, no explanation:
+{"full_name":"name as printed or null","date_of_birth":"DD/MM/YYYY or null","nrc_number":"format like 393380/67/1 or null","confidence":0.0}`}
+          ]
+        }]
+      })
+    });
+    if(!res.ok){ const e=await res.json(); throw new Error(e.error?.message||'API error '+res.status); }
+    const data = await res.json();
+    const raw = data.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    nrcResult = JSON.parse(raw);
+
+    document.getElementById('nrcOutName').textContent = nrcResult.full_name || 'Not detected';
+    document.getElementById('nrcOutDob').textContent = nrcResult.date_of_birth || 'Not detected';
+    document.getElementById('nrcOutNrc').textContent = nrcResult.nrc_number || 'Not detected';
+    const conf = Math.round((nrcResult.confidence||0)*100);
+    document.getElementById('nrcConfFill').style.width = conf+'%';
+    document.getElementById('nrcConfFill').style.background = conf>=80?'var(--green)':conf>=60?'var(--gold)':'var(--red)';
+    document.getElementById('nrcConfPct').textContent = conf+'%';
+    document.getElementById('nrcResult').style.display = 'block';
+    document.getElementById('nrcContinueBtn').style.display = 'block';
+    document.getElementById('nrcStatus').textContent = 'Scan complete — review your details below.';
+    showToast('✅ NRC read successfully','var(--green-l)');
+  } catch(err){
+    document.getElementById('nrcStatus').textContent = '❌ ' + err.message;
+    showToast('⚠ Scan failed — try a clearer photo','var(--gold-l)');
+  }
+  document.getElementById('nrcLoading').classList.remove('on');
+  document.getElementById('nrcScanBtn').disabled = false;
+}
+
+function applyNrcToProfile() {
+  if(!nrcResult) return;
+  if(nrcResult.full_name) document.getElementById('userName').value = nrcResult.full_name;
+  if(nrcResult.date_of_birth) document.getElementById('userDob').value = nrcResult.date_of_birth;
+  if(nrcResult.nrc_number) document.getElementById('userNrc').value = nrcResult.nrc_number;
+  document.getElementById('nrcFilledBanner').style.display = 'block';
+  go('identity');
+  showToast('✅ Profile auto-filled from NRC scan','var(--green-l)');
+}
+// ── END NRC SCANNER ──────────────────────────
+
+function nav(id) { go(id); }
+
+function selOne(el, cls) {
+  el.closest('.view').querySelectorAll('.'+cls).forEach(e => e.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function openMod(id) {
+  document.getElementById(id).classList.add('open');
+}
+function closeMod(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+// OTP fill
+let otpFilled = 0;
+const digits = ['3','8','4','2'];
+function fillOtp(i) {
+  const box = document.getElementById('otp'+i);
+  if(box.textContent === '_' || !box.classList.contains('filled')) {
+    box.textContent = digits[i];
+    box.classList.add('filled');
+    box.classList.remove('active');
+    otpFilled++;
+    const next = document.getElementById('otp'+(i+1));
+    if(next) next.classList.add('active');
+    if(otpFilled >= 4) {
+      setTimeout(()=>showToast('✅ Code verified — welcome to Muundo2U!','var(--green-l)'),300);
+    }
+  }
+}
+
+// Player
+function togglePlay() {
+  playing = !playing;
+  const btn = document.getElementById('playPauseBtn');
+  btn.textContent = playing ? '⏸' : '▶';
+  if(playing) {
+    playerInterval = setInterval(() => {
+      playerSeconds = Math.min(playerSeconds+1, 2520);
+      updatePlayerBar();
+    }, 1000);
+  } else {
+    clearInterval(playerInterval);
+  }
+}
+function updatePlayerBar() {
+  const pct = (playerSeconds/2520)*100;
+  const bar = document.getElementById('playerBar');
+  if(bar) bar.style.width = pct+'%';
+  const min = Math.floor(playerSeconds/60);
+  const sec = playerSeconds%60;
+  const el = document.getElementById('curTime');
+  if(el) el.textContent = `${min}:${sec.toString().padStart(2,'0')}`;
+}
+function seekBar(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pct = Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));
+  playerSeconds = Math.floor(pct*2520);
+  updatePlayerBar();
+}
+
+// Withdraw
+function confirmWithdraw() {
+  closeMod('withdrawModal');
+  setTimeout(()=>{
+    showToast('✅ K 1,041.60 sent to MTN MoMo · ZRA Smart Invoice generated','var(--green-l)');
+  },400);
+}
+
+// Toast
+let toastTimer;
+function showToast(msg, color) {
+  clearTimeout(toastTimer);
+  const t = document.getElementById('toast');
+  const d = document.getElementById('toastDot');
+  const m = document.getElementById('toastMsg');
+  d.style.background = color;
+  m.textContent = msg;
+  t.classList.add('show');
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// Boot
+go('splash');
+</script>
+</body>
+</html>
